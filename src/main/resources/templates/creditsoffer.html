@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Кредитное предложение</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="/blocks/header :: header"></header>
+<div class="row">
+    <div class="col-md-2"></div>
+<div class="container col-md-8 mx-0 px-0">
+    <table class="table table-striped table-hover table-bordered shadow mt-4" id="accordionExample">
+        <thead class="table-dark">
+        <tr>
+            <th width="57">№</th>
+            <th>ФИО</th>
+            <th>Кредит,₽</th>
+            <th>Сумма кредита,₽</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody th:each="creditoffer : ${creditsoffer}">
+        <tr th:data-toggle="collapse" th:attr="data-target='#accordion_'+${creditoffer.id}" class="accordion-toggle">
+            <th th:text="${creditoffer.id}"/>
+            <th> <a th:href="'/client/'+${creditoffer.persons.id}" th:text="${creditoffer.persons.fullName}"/> </th>
+            <th> <a th:href="'/credit/'+${creditoffer.credits.id}" th:text="${creditoffer.credits.limites}"/> </th>
+            <th th:text="${creditoffer.fullCredit}"/>
+            <th width="50" class="text-center p-1"><button type="button" class="btn btn-outline-secondary p-2" data-bs-toggle="collapse" th:data-bs-target="'#collapse_'+${creditoffer.id}" aria-expanded="false" aria-controls="collapseWidthExample">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                </svg>
+            </button></th>
+<!--     таблица в таблице       -->
+            <tr>
+            <td colspan="12" class="hiddenRow p-0">
+                <div class="collapse" th:id="'collapse_'+${creditoffer.id}" data-parent="#accordionExample">
+                    <table class="table table-info table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Дата платежа</th>
+                            <th>Сумма платежа,₽</th>
+                            <th>Сумма гашения тела кредита,₽</th>
+                            <th>Сумма гашения процентов,₽</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="dateOfPay : ${creditoffer.dateGrids}">
+                            <td th:text="${dateOfPay.date}"/>
+                            <td th:text="${dateOfPay.pay}"/>
+                            <td th:text="${dateOfPay.body}"/>
+                            <td th:text="${dateOfPay.percent}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+<!--            -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+</body>
+</html>
