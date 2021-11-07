@@ -1,17 +1,15 @@
 package com.example.bank.models;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
-import java.util.Collection;
+
 
 @Entity
 public class Persons {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "personId")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "personId")
     @Column(name = "idperson")
+    @SequenceGenerator(name = "personId",initialValue = 4)
     private Long id;
 
     @Column(name = "fullName",nullable = false)
@@ -20,6 +18,15 @@ public class Persons {
     private String email;
     private String cardID;
 
+    public Persons() {
+    }
+
+    public Persons(String fullName, String phoneNumber, String email, String cardID) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.cardID = cardID;
+    }
 
     public Long getId() {
         return id;

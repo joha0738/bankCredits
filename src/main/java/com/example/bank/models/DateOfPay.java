@@ -6,7 +6,8 @@ import javax.persistence.*;
 public class DateOfPay {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "dateid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "dateid")
+    @SequenceGenerator(name = "dateid", initialValue = 19)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)

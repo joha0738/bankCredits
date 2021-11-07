@@ -43,8 +43,6 @@ public class CreateSrvice {
         Banks bank = new Banks();
         bank.setPersons(person);
         bank.setCredits(credit);
-        bank.setName(person.getFullName());
-        bank.setCredit(credit.getLimites());
         banksRepository.save(bank);
 
         CreditsOffer creditsOffer = new CreditsOffer();

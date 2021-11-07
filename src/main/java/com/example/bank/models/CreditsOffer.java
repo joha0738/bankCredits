@@ -7,7 +7,8 @@ import java.util.List;
 public class CreditsOffer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "creditofferid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "creditofferid")
+    @SequenceGenerator(name = "creditofferid",initialValue = 4)
     @Column(name = "idOffer")
     private Long id;
 

@@ -8,7 +8,8 @@ import javax.persistence.*;
 public class Banks {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "bankId")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bankId")
+    @SequenceGenerator(name = "bankId",initialValue = 4)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -18,25 +19,6 @@ public class Banks {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idcredit")
     private Credits credits;
-
-    private String name;
-    private String credit;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCredit() {
-        return credit;
-    }
-
-    public void setCredit(String credit) {
-        this.credit = credit;
-    }
 
     public Long getId() {
         return id;

@@ -8,9 +8,8 @@ import javax.persistence.*;
 public class Credits {
 
     @Id
-//    @GenericGenerator(name="kaugens" , strategy="increment")
-//    @GeneratedValue(generator="kaugens")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "creditId")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "creditId")
+    @SequenceGenerator(name = "creditId",initialValue = 4)
     @Column(name = "idcredit")
     private Long id;
 
